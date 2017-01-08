@@ -100,21 +100,21 @@ class PageController: UIViewController {
     
     func loadFirstChoice() {
         if let page = page, firstChoice = page.firstChoice {
-            let nextPage = firstChoice.page
-            let pageController = PageController(page: nextPage)
-            
-            navigationController?.pushViewController(pageController, animated: true)
-            
+            loadChoice(firstChoice)
         }
     }
     
     func loadSecondChoice() {
         if let page = page, secondChoice = page.secondChoice {
-            let nextPage = secondChoice.page
-            let pageController = PageController(page: nextPage)
-            
-            navigationController?.pushViewController(pageController, animated: true)
+            loadChoice(secondChoice)
         }
+    }
+    
+    func loadChoice(choice: Page.Choice) {
+        let nextPage = choice.page
+        let pageController = PageController(page: nextPage)
+        
+        navigationController?.pushViewController(pageController, animated: true)
     }
     
     func playAgain() {
