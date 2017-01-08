@@ -13,6 +13,7 @@
 		6B3F51B91E21A0AC003CBF3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B3F51B81E21A0AC003CBF3E /* Assets.xcassets */; };
 		6B3F51BC1E21A0AC003CBF3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B3F51BA1E21A0AC003CBF3E /* LaunchScreen.storyboard */; };
 		6B3F51C41E21B2D9003CBF3E /* InteractiveStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3F51C31E21B2D9003CBF3E /* InteractiveStory.swift */; };
+		6B3F51C61E228AD1003CBF3E /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3F51C51E228AD1003CBF3E /* PageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		6B3F51BB1E21A0AC003CBF3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B3F51BD1E21A0AC003CBF3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B3F51C31E21B2D9003CBF3E /* InteractiveStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveStory.swift; sourceTree = "<group>"; };
+		6B3F51C51E228AD1003CBF3E /* PageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				6B3F51B11E21A0AC003CBF3E /* AppDelegate.swift */,
 				6B3F51B31E21A0AC003CBF3E /* ViewController.swift */,
+				6B3F51C51E228AD1003CBF3E /* PageController.swift */,
 				6B3F51C31E21B2D9003CBF3E /* InteractiveStory.swift */,
 				6B3F51B51E21A0AC003CBF3E /* Main.storyboard */,
 				6B3F51B81E21A0AC003CBF3E /* Assets.xcassets */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B3F51C61E228AD1003CBF3E /* PageController.swift in Sources */,
 				6B3F51C41E21B2D9003CBF3E /* InteractiveStory.swift in Sources */,
 				6B3F51B41E21A0AC003CBF3E /* ViewController.swift in Sources */,
 				6B3F51B21E21A0AC003CBF3E /* AppDelegate.swift in Sources */,
