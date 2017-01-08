@@ -32,6 +32,9 @@
                                 <rect key="frame" x="44" y="452" width="512" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="zku-J1-Fea"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -63,6 +66,7 @@
                     <navigationItem key="navigationItem" id="Jin-iz-avB"/>
                     <connections>
                         <outlet property="nameTextField" destination="3WA-Jc-FPc" id="Xef-EK-pkw"/>
+                        <outlet property="textFieldBottomConstraint" destination="78s-FU-7Sg" id="jLI-fb-2c5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

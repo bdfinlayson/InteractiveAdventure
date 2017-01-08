@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     enum Error: ErrorType {
         case NoName
@@ -16,9 +16,11 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     
+    @IBOutlet weak var textFieldBottomConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,11 +33,11 @@ class ViewController: UIViewController {
    
             do {
                 if let name = nameTextField.text {
-                    if name.isEmpty {
+                    if name == "" {
                         throw Error.NoName
                     }
                     if let pageController = segue.destinationViewController as? PageController {
-                        pageController.page = Adventure.story("Bryan")
+                        pageController.page = Adventure.story(name)
                     }
                 }
             } catch Error.NoName {
@@ -50,7 +52,25 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let userInfoDictionary = notification.userInfo, keyboardFrameValue = userInfoDictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            
+            let keyboardFrame = keyboardFrameValue.CGRectValue()
+            
+            UIView.animateWithDuration(0.8) {
+                self.textFieldBottomConstraint.constant = keyboardFrame.size.height + 10
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
 }
 
