@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -27,18 +28,46 @@
                                     <segue destination="NXs-Gm-fcF" kind="show" identifier="startAdventure" id="Hef-fB-6aU"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3WA-Jc-FPc">
+                                <rect key="frame" x="44" y="452" width="512" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="zku-J1-Fea"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="3WA-Jc-FPc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="232" id="0DE-8F-rKq"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Pdz-yu-crd" secondAttribute="bottom" id="3HL-QY-lZ1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3WA-Jc-FPc" secondAttribute="trailing" constant="24" id="3eo-q0-ueV"/>
+                            <constraint firstItem="tvs-K7-8YM" firstAttribute="top" secondItem="3WA-Jc-FPc" secondAttribute="bottom" constant="40" id="78s-FU-7Sg"/>
                             <constraint firstItem="tvs-K7-8YM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ABv-kp-BNL"/>
+                            <constraint firstItem="3WA-Jc-FPc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="HZo-75-yod"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3WA-Jc-FPc" secondAttribute="trailing" constant="231" id="KQ6-No-f4B"/>
                             <constraint firstAttribute="trailing" secondItem="Pdz-yu-crd" secondAttribute="trailing" id="aSR-hk-QDM"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tvs-K7-8YM" secondAttribute="bottom" constant="48" id="bbF-AL-fPY"/>
+                            <constraint firstItem="3WA-Jc-FPc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="elP-RS-FwS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3WA-Jc-FPc" secondAttribute="trailing" constant="24" id="gi2-5x-VOo"/>
                             <constraint firstItem="Pdz-yu-crd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="lZw-sj-998"/>
                             <constraint firstItem="Pdz-yu-crd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lin-6X-hyj"/>
+                            <constraint firstItem="3WA-Jc-FPc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="mAG-4Y-MVW"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0DE-8F-rKq"/>
+                                <exclude reference="HZo-75-yod"/>
+                                <exclude reference="KQ6-No-f4B"/>
+                                <exclude reference="gi2-5x-VOo"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Jin-iz-avB"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="3WA-Jc-FPc" id="Xef-EK-pkw"/>
+                        <outlet property="textFieldBottomConstraint" destination="78s-FU-7Sg" id="jLI-fb-2c5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
