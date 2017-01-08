@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    enum Error: ErrorType {
-        case NoName
+    enum NameError: Error {
+        case noName
     }
 
     @IBOutlet weak var nameTextField: UITextField!
@@ -20,9 +20,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,24 +30,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startAdventure" {
    
             do {
                 if let name = nameTextField.text {
                     if name == "" {
-                        throw Error.NoName
+                        throw NameError.noName
                     }
-                    if let pageController = segue.destinationViewController as? PageController {
+                    if let pageController = segue.destination as? PageController {
                         pageController.page = Adventure.story(name)
                     }
                 }
-            } catch Error.NoName {
-                let alertController = UIAlertController(title: "Name Not Provided", message: "Provide a name to start your story!", preferredStyle: .Alert)
-                let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            } catch NameError.noName {
+                let alertController = UIAlertController(title: "Name Not Provided", message: "Provide a name to start your story!", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alertController.addAction(action)
                 
-                presentViewController(alertController, animated: true, completion: nil)
+                present(alertController, animated: true, completion: nil)
                 
             } catch let error {
                 fatalError("\(error)")
@@ -55,28 +55,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func keyboardWillShow(notification: NSNotification) {
-        if let userInfoDictionary = notification.userInfo, keyboardFrameValue = userInfoDictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+    func keyboardWillShow(_ notification: Notification) {
+        if let userInfoDictionary = notification.userInfo, let keyboardFrameValue = userInfoDictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             
-            let keyboardFrame = keyboardFrameValue.CGRectValue()
+            let keyboardFrame = keyboardFrameValue.cgRectValue
             
-            UIView.animateWithDuration(0.8) {
+            UIView.animate(withDuration: 0.8, animations: {
                 self.textFieldBottomConstraint.constant = keyboardFrame.size.height + 10
                 self.view.layoutIfNeeded()
-            }
+            }) 
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        UIView.animateWithDuration(0.8) {
+    func keyboardWillHide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.8, animations: {
             self.textFieldBottomConstraint.constant = 40.0
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
     
     // MARK: - UITextFieldDelegate
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
