@@ -38,6 +38,16 @@ class PageController: UIViewController {
             
             attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
             storyLabel.attributedText = attributedString
+            
+            if let firstChoice = page.firstChoice {
+                firstChoiceButton.setTitle(firstChoice.title, forState: .Normal)
+            } else {
+                firstChoiceButton.setTitle("Play Again", forState: .Normal)
+            }
+            
+            if let secondChoice = page.secondChoice {
+                secondChoiceButton.setTitle(secondChoice.title, forState: .Normal)
+            }
         }
 
         // Do any additional setup after loading the view.
