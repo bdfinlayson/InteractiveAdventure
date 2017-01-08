@@ -21,6 +21,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +64,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.textFieldBottomConstraint.constant = keyboardFrame.size.height + 10
                 self.view.layoutIfNeeded()
             }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        UIView.animateWithDuration(0.8) {
+            self.textFieldBottomConstraint.constant = 40.0
+            self.view.layoutIfNeeded()
         }
     }
     
