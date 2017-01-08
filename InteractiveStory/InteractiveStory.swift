@@ -62,3 +62,22 @@ class Page {
         self.story = story
     }
 }
+
+extension Page {
+    func addChoice(title: String, story: Story) -> Page {
+        let page = Page(story: story)
+        return addChoice(title, page: page)
+    }
+    
+    func addChoice(title: String, page: Page) -> Page {
+        switch (firstChoice, secondChoice) {
+        case (.Some, .Some): break
+        case (.None, .None), (.None, .Some):
+            firstChoice = (title, page)
+        case (.Some, .None):
+            secondChoice = (title, page)
+        }
+        return page
+    }
+}
+
