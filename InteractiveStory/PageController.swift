@@ -28,6 +28,7 @@ class PageController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .whiteColor()
         
         if let page = page {
             artwork.image = page.story.artwork
@@ -41,16 +42,18 @@ class PageController: UIViewController {
             
             if let firstChoice = page.firstChoice {
                 firstChoiceButton.setTitle(firstChoice.title, forState: .Normal)
+                firstChoiceButton.addTarget(self, action: #selector(PageController.loadFirstChoice), forControlEvents: .TouchUpInside)
             } else {
                 firstChoiceButton.setTitle("Play Again", forState: .Normal)
+                firstChoiceButton.addTarget(self, action: #selector(PageController.playAgain), forControlEvents: .TouchUpInside)
             }
             
             if let secondChoice = page.secondChoice {
                 secondChoiceButton.setTitle(secondChoice.title, forState: .Normal)
+                secondChoiceButton.addTarget(self, action: #selector(PageController.loadSecondChoice), forControlEvents: .TouchUpInside)
             }
         }
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,6 +96,29 @@ class PageController: UIViewController {
             secondChoiceButton.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
             secondChoiceButton.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -32.0)
         ])
+    }
+    
+    func loadFirstChoice() {
+        if let page = page, firstChoice = page.firstChoice {
+            let nextPage = firstChoice.page
+            let pageController = PageController(page: nextPage)
+            
+            navigationController?.pushViewController(pageController, animated: true)
+            
+        }
+    }
+    
+    func loadSecondChoice() {
+        if let page = page, secondChoice = page.secondChoice {
+            let nextPage = secondChoice.page
+            let pageController = PageController(page: nextPage)
+            
+            navigationController?.pushViewController(pageController, animated: true)
+        }
+    }
+    
+    func playAgain() {
+        navigationController?.popToRootViewControllerAnimated(true)
     }
 
 }
