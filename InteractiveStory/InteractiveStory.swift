@@ -23,6 +23,7 @@ enum Story: String {
 
 extension Story {
     var artwork: UIImage {
+        print(self.rawValue)
         return UIImage(named: self.rawValue)!
     }
     
